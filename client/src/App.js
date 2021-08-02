@@ -1,13 +1,13 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 const API_BASE = "http://localhost:3001";
 
 function App() {
     const [todos, setTodos] = useState([]);
-    const [popupActive, setPopupActive] = useState(false); 
+    const [popupActive, setPopupActive] = useState(false);
     const [newTodo, setNewTodo] = useState("");
 
-    useEffect(() => { 
+    useEffect(() => {
         GetTodos();
 
         console.log(todos)
@@ -28,17 +28,21 @@ function App() {
             <h4>My Tasks</h4>
 
             <div className="todos">
-                {todos.map(todo => ( 
-                    <div className="todo" key={todo._id}>
+                {todos.map(todo => (
+                    <div className={
+                        "todo" + (todo.complete ? "is-complete" : "")
+                    } key={todo._id}>
                         <div className="checkbox"></div>
+
                         <div className="text">{todo.text}</div>
+                        
                         <div className="delete-todo">x</div>
                     </div>
                 ))}
 
 
             </div>
-       </div>
+        </div>
     );
 }
 
