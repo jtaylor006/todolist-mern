@@ -26,9 +26,19 @@ function App() {
             if (todo._id === data._id) {
                 todo.complete = data.complete;
             }
-            
+
             return todo;
         }));
+    }
+
+    const deleteTodo = async id => {
+        const data = await fetch(API_BASE + "/todo/delete/" + id, {
+            method:
+                "DELETE"
+        })
+            .then(res => res.json());
+
+        setTodos(todos => todos.filter(todo => todo._id !== data._id));
     }
 
 
@@ -40,13 +50,13 @@ function App() {
             <div className="todos">
                 {todos.map(todo => (
                     <div className={
-                        "todo" + (todo.complete ? "is-complete" : "")
+                        "todo " + (todo.complete ? "is-complete" : "")
                     } key={todo._id} onClick={() => completeTodo(todo._id)}>
                         <div className="checkbox"></div>
 
-                        <div className="text">{todo.text}</div>
+                        <div className="text">{ todo.text }</div>
 
-                        <div className="delete-todo">x</div>
+                        <div className="delete-todo" onClick={() => deleteTodo(todo._id)}>x</div>
                     </div>
                 ))}
 
