@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  },
+  "homepage": "https://jtaylor006.github.io/todolist-mern",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b main -d build",
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  }
+}
